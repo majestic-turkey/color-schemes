@@ -6,7 +6,7 @@ const generateButton = document.getElementById('generate-btn')
 
 
 // Get colors based on seed color and scheme type
-function fetchColors(base, scheme) {
+function fetchColors(base: string, scheme: string) {
     fetch(`https://www.thecolorapi.com/scheme?hex=${base}&mode=${scheme}&count=5`)
     .then(res => res.json())
     .then(data => {
@@ -16,28 +16,26 @@ function fetchColors(base, scheme) {
 }
 
 // Event Listeners
-generateButton.addEventListener('click', (e) => {
-
-})
-
 document.addEventListener('click', (e) => {
-    if (e.target.id === 'generate-btn') {
+    const event = e.target as HTMLElement
+    if (event.id === 'generate-btn' && baseColorInput && schemeTypeSelect) {
         e.preventDefault()
-        const baseColor = baseColorInput.value.substring(1)
-        const schemeType = schemeTypeSelect.value
+        const baseColor = (baseColorInput as HTMLInputElement).value.substring(1)
+        const schemeType = (schemeTypeSelect as HTMLSelectElement).value
         fetchColors(baseColor, schemeType)
-    } else  if (e.target.classList.contains('hex-value')) {
-        navigator.clipboard.writeText(e.target.innerText.substring(1))
-        const prevText = e.target.innerText
-        e.target.innerText = 'Copied!'
+    } else  if (event.classList.contains('hex-value')) {
+        navigator.clipboard.writeText(event.innerText.substring(1))
+        const prevText = event.innerText
+        event.innerText = 'Copied!'
         setTimeout(() => {
-            e.target.innerText = prevText
+            event.innerText = prevText
         }, 1000)
     }
 })
 
 // Render colors to the DOM
-function renderColors(colors) {
+function renderColors(colors: any[]) {
+    if (!colorSchemes) return
     colorSchemes.innerHTML = ''
     for (let color of colors) {
         const html = `
