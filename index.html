@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Scheme Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main>
+        <section class="controls">
+            <input type="color" id="base-color" name="base-color" value="#f55a5a">
+            <select id="scheme-type" name="scheme-type">
+                <option value="monochrome">Monochromatic</option>
+                <option value="analogic">Analogous</option>
+                <option value="complement">Complementary</option>
+                <option value="analogic-complement">Split Complementary</option>
+                <option value="triad">Triadic</option>
+                <option value="quad">Tetradic</option>
+            </select>
+
+            <button id="generate-btn">Get color scheme</button>
+        </section>
+
+        <section class="color-scheme" id="color-scheme">
+            <!-- Generated colors will appear here -->
+        </section>
+    </main>
+</html>
