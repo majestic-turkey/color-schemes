@@ -9,21 +9,26 @@
 </head>
 <body>
     <main>
-        <section class="controls">
-            <input type="color" id="base-color" name="base-color" value="#f55a5a">
-            <select id="scheme-type" name="scheme-type">
-                <option value="monochrome">Monochromatic</option>
-                <option value="analogic">Analogous</option>
-                <option value="complement">Complementary</option>
-                <option value="analogic-complement">Split Complementary</option>
-                <option value="triad">Triadic</option>
-                <option value="quad">Tetradic</option>
-            </select>
-
-            <button id="generate-btn">Get color scheme</button>
+        <h1>Color Scheme Generator</h1>
+        <section class="controls" aria-labelledby="controls-heading">
+            <h2 id="controls-heading" class="sr-only">Color Scheme Controls</h2>
+            <div class="input-row">
+                <input type="color" id="base-color" name="base-color" value="#f55a5a" aria-label="Select base color for the scheme">
+                <select id="scheme-type" name="scheme-type" aria-label="Choose color scheme type">
+                    <option value="monochrome">Monochromatic</option>
+                    <option value="analogic">Analogous</option>
+                    <option value="complement">Complementary</option>
+                    <option value="analogic-complement">Split Complementary</option>
+                    <option value="triad">Triadic</option>
+                    <option value="quad">Tetradic</option>
+                </select>
+                <input type="number" id="color-count" name="color-count" min="1" max="10" value="5" placeholder="Colors" aria-label="Number of colors to generate (1-10)">
+            </div>
+            <button id="generate-btn" aria-describedby="generate-description">Get color scheme</button>
+            <div id="generate-description" class="sr-only">Generates a color scheme based on your selected options</div>
         </section>
 
-        <section class="color-scheme" id="color-scheme">
+        <section class="color-scheme" id="color-scheme" aria-live="polite" aria-label="Generated color scheme">
             <!-- Generated colors will appear here -->
         </section>
     </main>

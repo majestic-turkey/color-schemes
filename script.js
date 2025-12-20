@@ -2,12 +2,13 @@
 const colorSchemes = document.getElementById('color-scheme')
 const baseColorInput = document.getElementById('base-color')
 const schemeTypeSelect = document.getElementById('scheme-type')
+const colorCountInput = document.getElementById('color-count')
 const generateButton = document.getElementById('generate-btn')
 
 
 // Get colors based on seed color and scheme type
-function fetchColors(base, scheme) {
-    fetch(`https://www.thecolorapi.com/scheme?hex=${base}&mode=${scheme}&count=5`)
+function fetchColors(base, scheme, count) {
+    fetch(`https://www.thecolorapi.com/scheme?hex=${base}&mode=${scheme}&count=${count}`)
     .then(res => res.json())
     .then(data => {
         const colors = data.colors
@@ -25,9 +26,11 @@ document.addEventListener('click', (e) => {
         e.preventDefault()
         const baseColor = baseColorInput.value.substring(1)
         const schemeType = schemeTypeSelect.value
-        fetchColors(baseColor, schemeType)
+        const count = colorCountInput.value
+        fetchColors(baseColor, schemeType, count)
     } else  if (e.target.classList.contains('hex-value')) {
-        navigator.clipboard.writeText(e.target.innerText.substring(1))
+        const hexValue = e.target.dataset.hex
+        navigator.clipboard.writeText(hexValue)
         const prevText = e.target.innerText
         e.target.innerText = 'Copied!'
         setTimeout(() => {
@@ -38,14 +41,15 @@ document.addEventListener('click', (e) => {
 
 // Render colors to the DOM
 function renderColors(colors) {
+    colorSchemes.style.gridTemplateColumns = `repeat(${colors.length}, 1fr)`
     colorSchemes.innerHTML = ''
     for (let color of colors) {
         const html = `
         <div class="color-container">
-            <div class="color" style="background-color: ${color.hex.value}"></div>
+            <div class="color" style="background-color: ${color.hex.value}" aria-hidden="true"></div>
         `
         const hexHtml = `
-            <div class="hex-value">${color.hex.value}</div>
+            <button class="hex-value" data-hex="${color.hex.value}" aria-label="Copy hex color ${color.hex.value} to clipboard">${color.hex.value}</button>
         </div>
         `
         colorSchemes.innerHTML = colorSchemes.innerHTML + html + hexHtml
