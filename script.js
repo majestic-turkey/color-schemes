@@ -50,7 +50,7 @@ function renderColors(colors) {
             <div class="color" style="background-color: ${color.hex.value}" aria-hidden="true"></div>
         `
         const hexHtml = `
-            <button class="hex-value" data-hex="${color.hex.value}" aria-label="Copy hex color ${color.hex.value} to clipboard">${color.hex.value}</button>
+            <button class="hex-value" data-hex="${color.hex.value}" aria-label="Copy hex color ${color.hex.value} to clipboard">${color.hex.value}<span>${color.name.value || null}</span></button>
         </div>
         `
         colorSchemes.innerHTML = colorSchemes.innerHTML + html + hexHtml
