@@ -1,0 +1,234 @@
+/* Universal box-sizing for layout reliability */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background: #fafbfc;
+    color: #222;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    max-width: 100vw;
+}
+
+main > h1 {
+    margin-bottom: 24px;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: #1a1a1a;
+    text-align: center;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 24px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.input-row {
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 18px;
+}
+
+.controls input,
+.controls select {
+    height: 42px;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: 1px solid #d3d3d3;
+    border-radius: 6px;
+    background: #fff;
+    color: #222;
+    width: 100%;
+    transition: border-color 0.2s;
+}
+
+.controls input[type="color"] {
+    padding: 0;
+    border: none;
+    background: none;
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
+}
+
+.controls input:focus,
+.controls select:focus,
+.controls button:focus {
+    outline: 2px solid #0078d7;
+    border-color: #0078d7;
+    z-index: 2;
+}
+
+.controls button {
+    background: #0078d7;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 6px;
+    height: 42px;
+    font-size: 16px;
+    transition: background 0.2s;
+    width: 100%;
+    max-width: 200px;
+    align-self: flex-end;
+}
+
+.controls button:hover,
+.controls button:focus {
+    background: #005fa3;
+}
+
+/* Remove number input arrows for all browsers */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    appearance: textfield;
+}
+
+#color-count {
+    width: 61px;
+    min-width: 61px;
+    max-width: 100px;
+}
+
+
+
+/* Color scheme grid */
+.color-scheme {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+    gap: 0;
+    width: 100%;
+    margin: 0;
+}
+
+.color-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 20vw;
+    min-width: 19vw;
+    z-index: 0;
+}
+
+.color {
+    width: 100%;
+    height: 70vh;
+    border-radius: 6px 6px 0 0;
+    border: 1px solid #e5e7eb;
+    border-left: none;
+    border-right: none;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    padding-bottom: 10px;
+}
+
+.hex-value {
+    grid-row: span 2;
+    text-align: center;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 20px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border: 1px solid #e5e7eb;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    transition: background 0.2s;
+}
+
+.hex-value:focus {
+    outline: 2px solid #007acc;
+    outline-offset: 2px;
+    background: #e6f0fa;
+}
+
+.color-name {
+    display: block;
+    padding-top: 3px;
+}
+
+/* Screen reader only content */
+.sr-only {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+/* Prevent overlap in flex children */
+.input-row > * {
+    min-width: 0;
+}
+
+/* Responsive layout for controls */
+@media (max-width: 600px) {
+    .controls {
+        max-width: 100vw;
+    }
+    .input-row {
+
+        gap: 5px;
+        align-items: stretch;
+    }
+    .controls button {
+        width: 100%;
+        max-width: 100%;
+    }
+    .color-scheme {
+	display: flex;
+	flex-direction: column;
+	min-width: 100%;
+	padding: 0;
+	margin: 0;
+	gap: 0;
+    }
+    .color-container {
+	height: 150px;
+	min-width: 100%;
+    }
+    .color {
+	min-width: 100%;
+	margin: auto;
+    }
+    .hex-value {
+	position: relative;
+	top: -70px;
+	border: none;
+	color: white;
+	text-shadow: 0 0 2px black;
+    }
+}
