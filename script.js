@@ -12,6 +12,7 @@ function fetchColors(base, scheme, count) {
     .then(res => res.json())
     .then(data => {
         const colors = data.colors
+        console.log(colors)
         renderColors(colors)
     })
 }
