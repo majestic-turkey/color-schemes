@@ -15,7 +15,11 @@
             <div class="input-row">
                 <input type="color" id="base-color" name="base-color" value="#f55a5a" aria-label="Select base color for the scheme">
                 <select id="scheme-type" name="scheme-type" aria-label="Choose color scheme type">
+                    <!-- hard-coded list of scheme modes from The Color API
+                         TODO: see if the API allows a way to automate grabbing all modes -->
                     <option value="monochrome">Monochromatic</option>
+                    <option value="monochrome-dark">Dark Monochromatic</option>
+                    <option value="monochrome-light">Light Monochromatic</option>
                     <option value="analogic">Analogous</option>
                     <option value="complement">Complementary</option>
                     <option value="analogic-complement">Split Complementary</option>
