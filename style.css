@@ -196,6 +196,10 @@ input[type="number"] {
 
 /* Responsive layout for controls */
 @media (max-width: 600px) {
+    body, main {
+	margin: 0;
+	padding: 0;
+    }
     .controls {
         max-width: 100vw;
     }
@@ -217,18 +221,22 @@ input[type="number"] {
 	gap: 0;
     }
     .color-container {
-	height: 150px;
+	height: auto;
 	min-width: 100%;
+	position: relative;
     }
     .color {
 	min-width: 100%;
-	margin: auto;
+	height: 150px;
+	margin: 0;
+	border-radius: 0;
     }
     .hex-value {
-	position: relative;
-	top: -70px;
+	position: absolute;
+	top: 80px;
 	border: none;
 	color: white;
 	text-shadow: 0 0 2px black;
+	text-align: center;
     }
 }
